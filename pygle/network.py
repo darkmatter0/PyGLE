@@ -104,7 +104,7 @@ def geocode(addresscode=None):
 def search(onlymine=None, first=None, latrange1=None, latrange2=None,
            longrange1=None, longrange2=None,
            lastupdt=None, freenet=None, paynet=None, netid=None, 
-           ssid=None, ssidlike=None, variance=None, resultsPerPage=None):
+           ssid=None, ssidlike=None, variance=None, resultsPerPage=None, searchAfter=None):
     """Search the WiGLE database
     
     Query the WiGLE database for paginated results based on multiple criteria. 
@@ -120,10 +120,10 @@ def search(onlymine=None, first=None, latrange1=None, latrange2=None,
         string to set, leave unset for general search. Can't be used with 
         COMMAPI auth, since these are points you have locally.
     first : int, optional
-        Result offset to fetch, used to page through results. Defaults to 0. 
-        COMMAPI queries are bounded at 100 pages. If you need more open-ended 
-        searches than this, we recommend contacting WiGLE-admin@wigle.net to 
-        discuss bulk pricing.
+        (DEPRECATED: use searchAfter) Result offset to fetch, used to page through
+        results. Defaults to 0. COMMAPI queries are bounded at 100 pages. If you 
+        need more open-ended searches than this, we recommend contacting
+        WiGLE-admin@wigle.net to discuss bulk pricing.
     latrange1 : float, optional
         Lesser of two latitudes by which to bound the search.
     latrange2 : float, optional
@@ -153,6 +153,9 @@ def search(onlymine=None, first=None, latrange1=None, latrange2=None,
     resultsPerPage : int, optional
         How many results to return per request. Defaults to 25 for COMMAPI, 10
         for site. Bounded at 1000 for COMMAPI, 100 for site.
+    searchAFter : long, optional
+        Previous page's search_after to get the next page. Use this instead of 
+        'first'
 
     Returns
     -------
@@ -163,4 +166,6 @@ def search(onlymine=None, first=None, latrange1=None, latrange2=None,
     requests.HTTPError
     
     """
+    if first:
+        print "** The use of 'first' is DEPRECATED, please update your code to use searchAfter!"
     return get('network', 'search', **locals())
