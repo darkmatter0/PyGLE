@@ -1,0 +1,97 @@
+Metadata-Version: 1.1
+Name: pygle
+Version: 0.20
+Summary: API wrapper for WiGLE
+Home-page: https://github.com/jamiebull1/pygle
+Author: Jamie Bull
+Author-email: jamie.bull@oco-carbon.com
+License: MIT License
+Download-URL: https://github.com/jamiebull1/pygle/tarball/v0.20
+Description: PyGLE
+        =====
+        
+        PyGLE is a wrapper for the WiGLE WiFi mapping API.
+        
+        Installation
+        ------------
+        
+        To install PyGLE for Python 2.x or 3.x just call ``pip install pygle``.
+        
+        You'll also need to set up an account with WiGLE and retrieve your API
+        details to go into the config.py file.
+        
+        Usage
+        -----
+        
+        Using the API wrapper is very much like using the API itself. PyGLE has
+        four modules, corresponding to the four sections of the WiGLE API v2. So
+        each section is a module in PyGLE and each API endpoint is a function in
+        that module.
+        
+        To use the API, first import the section, then call the endpoint
+        function. So to perform an authenticated GET request against an
+        endpoint:
+        
+        ::
+        
+            >>> from pygle import network
+            >>> network.geocode(addresscode="London")
+            {'success': True, 'results': [{'address': {'city': 'London', 
+            'county': 'London', 'state_district': 'Greater London', 'state': 'England', 
+            'country': 'UK', 'country_code': 'gb'}, 'lat': 51.50732, 'lon': -0.1276399, 
+            'importance': 0.9754895765402, 'place_id': 233847357, 
+            'licence': 'Data (c) OpenStreetMap contributors, ODbL 1.0. http://www.openstreetmap.org/copyright', 
+            'osm_type': 'relation', 
+            'boundingbox': [51.28676, 51.69187, -0.5103699, 0.33401]}]}
+        
+        This returns a ``dict``, or raises an ``HTTPError`` if something went
+        wrong.
+        
+        API documentation
+        -----------------
+        
+        The PyGLE API wrapper is fully documented with docstrings which were
+        correct as of 11/2/2017, but in case of any disagreement between these
+        and the `interactive WiGLE API docs <https://api.wigle.net/swagger>`__,
+        the WiGLE docs take precedence. Please submit any discrepancies as
+        issues `here <https://github.com/jamiebull1/pygle/issues>`__.
+        
+        The sections and endpoints available are:
+        
+        -  `file <https://api.wigle.net/swagger#/Network_observation_file_upload_and_status.>`__
+        
+           -  `kml <https://api.wigle.net/swagger#!/Network_observation_file_upload_and_status./getKmlForTransId>`__
+           -  `transactions <https://api.wigle.net/swagger#!/Network_observation_file_upload_and_status./getTransLogsForUser>`__
+           -  `upload <https://api.wigle.net/swagger#!/Network_observation_file_upload_and_status./upload>`__
+        
+        -  `network <https://api.wigle.net/swagger#/Network_search_and_information_tools>`__
+        
+           -  `comment <https://api.wigle.net/swagger#!/Network_search_and_information_tools/comment>`__
+           -  `detail <https://api.wigle.net/swagger#!/Network_search_and_information_tools/detail>`__
+           -  `geocode <https://api.wigle.net/swagger#!/Network_search_and_information_tools/geocode>`__
+           -  `search <https://api.wigle.net/swagger#!/Network_search_and_information_tools/search>`__
+        
+        -  `stats <https://api.wigle.net/swagger#/Statistics_and_information>`__
+        
+           -  `countries <https://api.wigle.net/swagger#!/Statistics_and_information/countries>`__
+           -  `general <https://api.wigle.net/swagger#!/Statistics_and_information/generalStats>`__
+           -  `group <https://api.wigle.net/swagger#!/Statistics_and_information/groupStats>`__
+           -  `regions <https://api.wigle.net/swagger#!/Statistics_and_information/countryRegion>`__
+           -  `site <https://api.wigle.net/swagger#!/Statistics_and_information/siteStats>`__
+           -  `standings <https://api.wigle.net/swagger#!/Statistics_and_information/stats>`__
+           -  `user <https://api.wigle.net/swagger#!/Statistics_and_information/userStatistics>`__
+        
+        -  `profile <https://api.wigle.net/swagger#/User_profile_operations>`__
+        
+           -  `apiToken <https://api.wigle.net/swagger#!/User_profile_operations/apiToken>`__
+           -  `user <https://api.wigle.net/swagger#!/User_profile_operations/user>`__
+        
+Keywords: WiGLE,WiFi,mapping
+Platform: any
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 3 - Alpha
+Classifier: Natural Language :: English
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
