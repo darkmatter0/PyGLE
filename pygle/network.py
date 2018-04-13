@@ -167,5 +167,5 @@ def search(onlymine=None, first=None, latrange1=None, latrange2=None,
     
     """
     if first:
-        print "** The use of 'first' is DEPRECATED, please update your code to use searchAfter!"
+        print('The use of "first" is DEPRECATED, please update your code to use searchAfter')
     return get('network', 'search', **locals())
